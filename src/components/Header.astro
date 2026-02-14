@@ -1,0 +1,39 @@
+---
+const currentPath = Astro.url.pathname;
+---
+
+<header class="w-full bg-zinc-900/80 backdrop-blur-md fixed top-0 left-0 z-50">
+  <div class="mx-auto flex justify-between px-8">
+    <a href="/" class="flex items-center">
+      <img 
+        src="/src/public/logo.png" 
+        alt="Logo Torneo"
+        class="h-30 w-auto"
+      />
+    </a>
+
+    <nav class="flex items-center gap-20 text-sm font-semibold uppercase tracking-wider pr-60">
+      <a 
+        href="/clasificacion" 
+        class={`transition hover:text-lime-400 ${currentPath === "/clasificacion" ? "text-lime-400" : ""}`}
+      >
+        Clasificación
+      </a>
+
+      <a 
+        href="/participantes" 
+        class={`transition hover:text-lime-400 ${currentPath === "/participantes" ? "text-lime-400" : ""}`}
+      >
+        Participantes
+      </a>
+
+      <a 
+        href="/partidos" 
+        class={`transition hover:text-lime-400 ${currentPath === "/partidos" ? "text-lime-400" : ""}`}
+      >
+        Partidos
+      </a>
+
+    </nav>
+  </div>
+</header>
