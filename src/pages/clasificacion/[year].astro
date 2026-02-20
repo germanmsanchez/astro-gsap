@@ -1,0 +1,203 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { clasificacionByYear } from "../../data/clasificacion";
+
+export async function getStaticPaths() {
+  return Object.keys(clasificacionByYear).map((year) => ({
+    params: { year },
+  }));
+}
+
+const { year } = Astro.params;
+const rows = clasificacionByYear[year ?? ""] ?? [];
+
+if (!rows.length) {
+  throw new Error(`No hay datos de clasificación para el año ${year}`);
+}
+
+// Ordenación especial 2025: primero grupo de pista 1 (120 min) y luego puntos
+const sorted = [...rows].sort((a, b) => {
+  if (year === "2025") {
+    const p1a = a.pista1_min ?? 0;
+    const p1b = b.pista1_min ?? 0;
+    if (p1b !== p1a) return p1b - p1a; // 120 primero
+
+    const pa = a.puntos ?? 0;
+    const pb = b.puntos ?? 0;
+    if (pb !== pa) return pb - pa;
+
+    const sa = a.subidas ?? 0;
+    const sb = b.subidas ?? 0;
+    if (sb !== sa) return sb - sa;
+
+    const ba = a.bajadas ?? 0;
+    const bb = b.bajadas ?? 0;
+    if (ba !== bb) return ba - bb;
+
+    return (a.jugador ?? "").localeCompare(b.jugador ?? "");
+  }
+
+  // Otros años: puntos desc
+  const pa = a.puntos ?? 0;
+  const pb = b.puntos ?? 0;
+  if (pb !== pa) return pb - pa;
+
+  const sa = a.subidas ?? 0;
+  const sb = b.subidas ?? 0;
+  if (sb !== sa) return sb - sa;
+
+  const ba = a.bajadas ?? 0;
+  const bb = b.bajadas ?? 0;
+  if (ba !== bb) return ba - bb;
+
+  return (a.jugador ?? "").localeCompare(b.jugador ?? "");
+});
+
+const top = sorted.slice(0, 3);
+const rest = sorted.slice(3);
+const all = [...top, ...rest];
+
+// Helper: calcula posición con empates (competition ranking: 1,1,3...)
+function rankAtIndex(idx: number) {
+  const curr = all[idx];
+  if (idx === 0) return 1;
+
+  const prev = all[idx - 1];
+
+  const sameGroup = year !== "2025" || (prev.pista1_min ?? 0) === (curr.pista1_min ?? 0);
+  const samePoints = (prev.puntos ?? 0) === (curr.puntos ?? 0);
+
+  // Si empata con el anterior (mismo grupo en 2025 + mismos puntos), misma posición que el anterior
+  if (sameGroup && samePoints) {
+    // Busca hacia atrás la última posición "base" (donde no era empate)
+    for (let j = idx - 1; j >= 0; j--) {
+      if (j === 0) return 1;
+      const a = all[j];
+      const b = all[j - 1];
+
+      const groupEq = year !== "2025" || (a.pista1_min ?? 0) === (b.pista1_min ?? 0);
+      const pointsEq = (a.puntos ?? 0) === (b.puntos ?? 0);
+
+      if (!(groupEq && pointsEq)) return j + 1;
+    }
+    return 1;
+  }
+
+  // Si no empata, posición = idx + 1 (con saltos por empates previos)
+  return idx + 1;
+}
+---
+
+<BaseLayout title={`Clasificación ${year} | Torneo Cumpleaños GR`}>
+  <section class="min-h-screen bg-zinc-950 text-white px-6 md:px-16 py-20">
+    <div class="max-w-5xl mx-auto">
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10">
+        <div>
+          <h1 class="text-4xl md:text-5xl font-black text-lime-400">
+            Clasificación {year}
+          </h1>
+          <p class="text-zinc-300 mt-4 max-w-2xl">
+            Ranking según el sistema de puntos del torneo.
+            {year === "2025"
+              ? " En 2025 se prioriza el grupo de Pista 1 (120 min) y después los puntos."
+              : " Se ordena por puntos y criterios de desempate."}
+          </p>
+        </div>
+
+        <div class="flex gap-3">
+          <a
+            href="/clasificacion/2025"
+            class={`rounded-xl border px-4 py-2 text-sm font-semibold transition ${
+              year === "2025"
+                ? "border-lime-400 text-lime-400"
+                : "border-zinc-700 text-zinc-300 hover:border-zinc-500"
+            }`}
+          >
+            2025
+          </a>
+          <a
+            href="/clasificacion/2026"
+            class={`rounded-xl border px-4 py-2 text-sm font-semibold transition ${
+              year === "2026"
+                ? "border-lime-400 text-lime-400"
+                : "border-zinc-700 text-zinc-300 hover:border-zinc-500"
+            }`}
+          >
+            2026
+          </a>
+        </div>
+      </div>
+
+      <!-- TOP 3 -->
+      <div class="grid md:grid-cols-3 gap-6 mb-12">
+        {top.map((p, i) => (
+          <div class="rounded-2xl border border-zinc-800 bg-zinc-900/40 p-6">
+            <p class="text-zinc-400 text-sm mb-2">#{rankAtIndex(i)}</p>
+            <p class="text-white text-xl font-bold">{p.jugador}</p>
+            <p class="text-lime-400 font-black text-3xl mt-4">{p.puntos} pts</p>
+
+            <div class="mt-6 text-sm text-zinc-300 space-y-2">
+              <p><span class="text-zinc-400">Min. en Pista 1:</span> {p.pista1_min ?? 0}</p>
+              <p><span class="text-zinc-400">Subidas:</span> {p.subidas ?? 0}</p>
+              <p><span class="text-zinc-400">Bajadas:</span> {p.bajadas ?? 0}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- TABLA -->
+      <div class="rounded-2xl border border-zinc-800 bg-zinc-900/40 overflow-hidden">
+        <div class="px-6 py-4 border-b border-zinc-800">
+          <h2 class="text-white text-xl font-bold">Tabla completa</h2>
+          <p class="text-zinc-400 text-sm mt-1">
+            {year === "2025" ? "Ordenada por grupo (Pista 1 arriba) y puntos" : "Ordenada por puntos"}
+            {" · "}
+            Empates: misma posición si tienen los mismos puntos
+            {year === "2025" ? " (dentro del mismo grupo)" : ""}.
+          </p>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="min-w-full text-left text-sm">
+            <thead class="text-zinc-400">
+              <tr class="border-b border-zinc-800">
+                <th class="px-6 py-4 font-semibold">Pos.</th>
+                <th class="px-6 py-4 font-semibold">Jugador</th>
+                <th class="px-6 py-4 font-semibold">Puntos</th>
+                <th class="px-6 py-4 font-semibold">Min. Pista 1</th>
+                <th class="px-6 py-4 font-semibold">Subidas</th>
+                <th class="px-6 py-4 font-semibold">Bajadas</th>
+              </tr>
+            </thead>
+
+            <tbody class="text-zinc-200">
+              {all.map((r, idx) => (
+                <tr class={`border-b border-zinc-900/60 ${idx < 3 ? "bg-lime-400/5" : ""}`}>
+                  <td class="px-6 py-4 font-semibold">{rankAtIndex(idx)}</td>
+                  <td class="px-6 py-4 font-semibold text-white">
+                    {r.jugador}
+                    {year === "2025" && (
+                      <span
+                        class={`ml-3 rounded-full px-2 py-0.5 text-xs border ${
+                          (r.pista1_min ?? 0) >= 120
+                            ? "border-lime-400/40 text-lime-300 bg-lime-400/10"
+                            : "border-zinc-600 text-zinc-300 bg-zinc-800/30"
+                        }`}
+                      >
+                        {(r.pista1_min ?? 0) >= 120 ? "Grupo 1" : "Grupo 2"}
+                      </span>
+                    )}
+                  </td>
+                  <td class="px-6 py-4 font-bold text-lime-400">{r.puntos}</td>
+                  <td class="px-6 py-4">{r.pista1_min ?? 0}</td>
+                  <td class="px-6 py-4">{r.subidas ?? 0}</td>
+                  <td class="px-6 py-4">{r.bajadas ?? 0}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

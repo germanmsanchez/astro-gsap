@@ -1,0 +1,118 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Reglas | Torneo Cumpleaños GR">
+  <section class="min-h-screen bg-zinc-950 text-white px-6 md:px-16 py-20">
+    <div class="max-w-5xl mx-auto">
+      <h1 class="text-4xl md:text-5xl font-black mb-10 text-lime-400">
+        Reglas del Torneo
+      </h1>
+
+    <div class="mb-16 pb-10">
+      <p class="text-zinc-300 text-base md:text-lg leading-relaxed">
+        Este torneo se juega en formato
+        <span class="text-white font-semibold">“Rey de la Pista”</span>.
+        Cada cierto tiempo se detiene el juego y se decide quién sube y quién baja
+        de pista, premiando a quienes logran mantenerse en las posiciones más altas.
+      </p>
+    </div>
+
+    <div class="mb-14">
+      <h2 class="text-white text-xl font-bold mb-5">Duración de los partidos</h2>
+      <p class="text-zinc-300 leading-relaxed">
+        El torneo se divide en rondas de
+        <span class="text-white font-semibold">30 minutos</span>.
+        Cuando el tiempo termina, se detiene el partido independientemente del
+        marcador y se aplica la norma de subida o bajada.
+      </p>
+    </div>
+
+    <div class="mb-14">
+      <h2 class="text-white text-xl font-bold mb-5">Subidas y bajadas</h2>
+      <ul class="space-y-4 text-zinc-300">
+        <li>• La pareja que vaya ganando al finalizar el tiempo <span class="text-white font-semibold">sube una pista</span>.</li>
+        <li>• La pareja que vaya perdiendo <span class="text-white font-semibold">baja una pista</span>.</li>
+        <li>• En caso de empate, se jugará un <span class="text-white font-semibold">punto de oro</span> para decidir.</li>
+      </ul>
+    </div>
+
+    <div class="mb-14">
+      <h2 class="text-white text-xl font-bold mb-5">Reglas por pista</h2>
+
+      <div class="space-y-6 text-zinc-300">
+        <p>
+          <span class="text-white font-semibold">Pista 1:</span>
+          Es la pista más alta. Si ganas, te mantienes en ella.
+          Si pierdes, bajas a Pista 2.
+        </p>
+
+        <p>
+          <span class="text-white font-semibold">Pista 4:</span>
+          Es la pista más baja. Si pierdes, permaneces en ella.
+          Si ganas, subes a Pista 3.
+        </p>
+      </div>
+    </div>
+
+    <div class="mb-14 pb-10">
+      <h2 class="text-white text-xl font-bold mb-5">Sistema de puntuación</h2>
+
+      <p class="text-zinc-300 mb-6 leading-relaxed">
+        Durante la <span class="text-white font-semibold">primera hora y media</span>
+        solo se tiene en cuenta ganar o perder. Este periodo sirve para equilibrar
+        el torneo y que cada pareja acabe en la pista que le corresponde por nivel.
+      </p>
+
+      <p class="text-zinc-300 mb-8 leading-relaxed">
+        A partir del cuarto partido comienza la puntuación por pista:
+      </p>
+
+      <div class="grid md:grid-cols-2 gap-6 text-zinc-300">
+
+        <div class="p-5">
+          <p class="font-semibold text-white mb-2">Pista 1</p>
+          <p>4 puntos si ganas</p>
+          <p>2 puntos si pierdes</p>
+        </div>
+
+        <div class="p-5">
+          <p class="font-semibold text-white mb-2">Pista 2</p>
+          <p>3 puntos si ganas</p>
+          <p>1 punto si pierdes</p>
+        </div>
+
+        <div class="p-5">
+          <p class="font-semibold text-white mb-2">Pista 3</p>
+          <p>2 puntos si ganas</p>
+          <p>1 punto si pierdes</p>
+        </div>
+
+        <div class="p-5">
+          <p class="font-semibold text-white mb-2">Pista 4</p>
+          <p>1 punto si ganas</p>
+          <p>0 puntos si pierdes</p>
+        </div>
+
+      </div>
+
+      <p class="mt-8 text-zinc-300 leading-relaxed">
+        Así se premia no solo ganar, sino
+        <span class="text-white font-semibold">ganar en las pistas altas y mantenerse arriba</span>.
+      </p>
+    </div>
+
+    <div class="md:text-left mt-16">
+      <h2 class="text-white text-xl font-bold ">🏆 Objetivo del torneo</h2>
+      <p class="text-zinc-300 leading-relaxed pb-10">
+        No gana quien más juegos anota, sino quien demuestra regularidad,
+        constancia y capacidad para mantenerse en las pistas superiores.
+        La clave está en subir… y no bajar.
+      </p>
+
+      <p class="text-white font-semibold">
+        ¡A disfrutar y a luchar por la Pista 1! 🎾
+      </p>
+    </div>
+  </section>
+</BaseLayout>
