@@ -12,33 +12,48 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     />
     <div class="pointer-events-none absolute inset-0 bg-black/30"></div>
 
-    <div id="introAnim" class="absolute left-0 -translate-x-1/3 top-1/2 -translate-y-1/2 flex items-center gap-150">
+    <div
+      id="introAnim"
+      class="
+         absolute
+         -translate-x-1/2
+        top-1/2 -translate-y-1/2
+        flex items-center gap-20
+        left-0 md:-translate-x-1/3
+        md:gap-150
+      "
+    >
+      <span id="palaWrap" class="block">
+        <img
+          id="palaImg"
+          src="/src/public/pala-german3.png"
+          alt="Pala de padel"
+          class="
+            h-140 w-auto md:h-300 md:w-auto
+          "
+        />
+      </span>
 
-		<span id="palaWrap" class="block">
-			<img
-			id="palaImg"
-			src="/src/public/pala-german3.png"
-			alt="Pala de padel"
-			class="h-300 w-auto pointer-events-none"
-			/>
-		</span>
+      <button id="participarBtn" type="button" class="shrink-0">
+        <span id="ballWrap" class="block">
+          <img
+            src="/src/public/pelota-boton.png"
+            alt="Pelota de padel"
+            class="
+              pointer-events-none
+              h-16 w-16
 
-		<button id="participarBtn" type="button">
-			<span id="ballWrap" class="block">
-			<img
-				src="/src/public/pelota-boton.png"
-				alt="Pelota de padel"
-				class="h-30 w-30 pointer-events-none"
-			/>
-			</span>
-		</button>
-
-	</div>
+              md:h-30 md:w-30
+            "
+          />
+        </span>
+      </button>
+    </div>
   </section>
 
   <script is:inline>
   window.addEventListener("DOMContentLoaded", () => {
-	const container = document.getElementById("introAnim");
+    const container = document.getElementById("introAnim");
     const btn = document.getElementById("participarBtn");
     const palaWrap = document.getElementById("palaWrap");
     const palaImg = document.getElementById("palaImg");
@@ -46,74 +61,121 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
     if (!container || !btn || !palaWrap || !palaImg || !ball || !window.gsap) return;
 
-	const LS_KEY = "introAnimDone";
+    const LS_KEY = "introAnimDone";
 
-	if (localStorage.getItem(LS_KEY) === "1") {
+    if (localStorage.getItem(LS_KEY) === "1") {
       container.style.display = "none";
       return;
     }
 
     let running = false;
 
+    const mm = window.gsap.matchMedia();
+
     btn.addEventListener("click", () => {
       if (running) return;
       running = true;
+      btn.disabled = true;
 
-	  btn.disabled = true;
+      if (btn._tl && btn._tl.kill) btn._tl.kill();
 
-      const tl = window.gsap.timeline({
-        onComplete: () => {
-          running = false;
-          localStorage.setItem(LS_KEY, "1");
-          container.style.display = "none";
+      mm.add(
+        {
+          isDesktop: "(min-width: 768px)",
+          isMobile: "(max-width: 767px)",
         },
-      });
+        (context) => {
+          const { isDesktop, isMobile } = context.conditions;
 
-      tl.to(palaWrap, {
-        duration: 0.7,
-        x: 800,
-        rotation: 20,
-        ease: "power2.in",
-      });
-      tl.call(() => {
-        palaImg.src = "/src/public/pala-german2.png";
-      });
-      tl.to(palaWrap, {
-        duration: 0.06,
-        x: 900,
-        rotation: 35,
-        ease: "power1.in",
-      });
-      tl.call(() => {
-        palaImg.src = "/src/public/pala-german1.png";
-      });
-tl.to(
-  ball,
-  {
-    duration: 1.8,
-    scale: 6,
-    rotation: 360,
-    ease: "power3.in",
-    transformOrigin: "center center",
-  },
-  "<"
-)
-.to(ball, {
-  duration: 1.2,
-  scale: 200,
-  filter: "blur(8px)",
-  opacity: 0,
-  ease: "power2.out",
-})
-.to(palaWrap, {
-  duration: 0.01,
-  opacity: 0,
-  rotation: 20,
-  ease: "power2.in",
-},
-"<");
+          let palaX1 = 800;
+          let palaX2 = 900;
+          let palaRot1 = 20;
+          let palaRot2 = 35;
+
+          let ballScale1 = 6;
+          let ballScale2 = 200;
+          let ballBlur = 8;
+
+          if (isMobile) {
+
+            palaX1 = Math.min(300, window.innerWidth * 0.55);
+            palaX2 = Math.min(380, window.innerWidth * 0.50);
+            palaRot1 = 16;
+            palaRot2 = 28;
+
+            ballScale1 = 4.5;
+            ballScale2 = 90;
+            ballBlur = 6;
+          }
+
+          const tl = window.gsap.timeline({
+            onComplete: () => {
+              running = false;
+              localStorage.setItem(LS_KEY, "1");
+              container.style.display = "none";
+            },
+          });
+
+          btn._tl = tl;
+
+          tl.to(palaWrap, {
+            duration: 0.7,
+            y: "70px",
+            x: palaX1,
+            rotation: palaRot1,
+            ease: "power2.in",
+          });
+
+          tl.call(() => {
+            palaImg.src = "/src/public/pala-german2.png";
+          });
+
+          tl.to(palaWrap, {
+            duration: 0.06,
+            x: palaX2,
+            rotation: palaRot2,
+            ease: "power1.in",
+          });
+
+          tl.call(() => {
+            palaImg.src = "/src/public/pala-german1.png";
+          });
+
+          tl.to(
+            ball,
+            {
+              duration: 1.8,
+              scale: ballScale1,
+              rotation: 360,
+              ease: "power3.in",
+              transformOrigin: "center center",
+            },
+            "<"
+          )
+            .to(ball, {
+              duration: 1.2,
+              scale: ballScale2,
+              filter: `blur(${ballBlur}px)`,
+              opacity: 0,
+              ease: "power2.out",
+            })
+            .to(
+              palaWrap,
+              {
+                duration: 0.01,
+                opacity: 0,
+                rotation: palaRot1,
+                ease: "power2.in",
+              },
+              "<"
+            );
+
+          return () => {
+            if (tl && tl.kill) tl.kill();
+          };
+        }
+      );
     });
   });
 </script>
-
 </BaseLayout>
