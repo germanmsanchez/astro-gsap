@@ -9,109 +9,61 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         Reglas del Torneo
       </h1>
 
-    <div class="mb-16 pb-10">
+    <div class="mb-16">
       <p class="text-zinc-300 text-base md:text-lg leading-relaxed">
         Este torneo se juega en formato
-        <span class="text-white font-semibold">“Rey de la Pista”</span>.
-        Cada cierto tiempo se detiene el juego y se decide quién sube y quién baja
-        de pista, premiando a quienes logran mantenerse en las posiciones más altas.
+        <span class="text-white font-semibold">“Liga”</span>.
+        Cada equipo se enfrentará a todos los equipos de su grupo un solo partido.
+        Una vez finalizado el tiempo, el juego se detendrá y el resultado se decidirá según el marcador en ese momento.
+        Si un equipo va por delante en juegos, será declarado ganador del partido.
+        En caso de empate en juegos, ganará el equipo que tenga más puntos en el juego que se esté disputando en ese momento.
+        Si también hubiera empate en puntos, el partido se considerará empate y ambos equipos recibirán un punto.
       </p>
     </div>
 
     <div class="mb-14">
       <h2 class="text-white text-xl font-bold mb-5">Duración de los partidos</h2>
       <p class="text-zinc-300 leading-relaxed">
-        El torneo se divide en rondas de
-        <span class="text-white font-semibold">30 minutos</span>.
+        El torneo se divide en 7 partidos de
+        <span class="text-white font-semibold">20 minutos</span>.
         Cuando el tiempo termina, se detiene el partido independientemente del
-        marcador y se aplica la norma de subida o bajada.
+        marcador y se aplica la norma para ganar 0, 1 o 3 puntos.
       </p>
     </div>
 
     <div class="mb-14">
-      <h2 class="text-white text-xl font-bold mb-5">Subidas y bajadas</h2>
+      <h2 class="text-white text-xl font-bold mb-5">Puntuación de los partidos</h2>
       <ul class="space-y-4 text-zinc-300">
-        <li>• La pareja que vaya ganando al finalizar el tiempo <span class="text-white font-semibold">sube una pista</span>.</li>
-        <li>• La pareja que vaya perdiendo <span class="text-white font-semibold">baja una pista</span>.</li>
-        <li>• En caso de empate, se jugará un <span class="text-white font-semibold">punto de oro</span> para decidir.</li>
+        <li>• La pareja que vaya ganando al finalizar el tiempo <span class="text-white font-semibold">gana 3 puntos</span>.</li>
+        <li>• La pareja que vaya perdiendo <span class="text-white font-semibold">no ganaran ningun punto</span>.</li>
+        <li>• En caso de empate <span class="text-white font-semibold">ambos ganaran 1 punto</span>.</li>
       </ul>
     </div>
 
     <div class="mb-14">
-      <h2 class="text-white text-xl font-bold mb-5">Reglas por pista</h2>
-
-      <div class="space-y-6 text-zinc-300">
+      <h2 class="text-white text-xl font-bold mb-5">Tiempo entre partidos</h2>
+      <div class="text-zinc-300">
         <p>
-          <span class="text-white font-semibold">Pista 1:</span>
-          Es la pista más alta. Si ganas, te mantienes en ella.
-          Si pierdes, bajas a Pista 2.
-        </p>
-
-        <p>
-          <span class="text-white font-semibold">Pista 4:</span>
-          Es la pista más baja. Si pierdes, permaneces en ella.
-          Si ganas, subes a Pista 3.
+          Se dispondrá de 
+          <span class="text-white font-semibold">20 minutos</span>
+          de descanso entre partidos para secarse, hidratarse o tomar algo antes de comenzar el siguiente enfrentamiento. 
+          Como cada grupo cuenta con solo dos pistas, mientras cuatro parejas estén jugando las otras parejas del grupo descansarán, y viceversa. 
+          En algunos casos puntuales puede ocurrir que una pareja 
+          <span class="text-white font-semibold">tenga que jugar dos partidos seguidos</span>
+          y descansar después.
         </p>
       </div>
-    </div>
-
-    <div class="mb-14 pb-10">
-      <h2 class="text-white text-xl font-bold mb-5">Sistema de puntuación</h2>
-
-      <p class="text-zinc-300 mb-6 leading-relaxed">
-        Durante la <span class="text-white font-semibold">primera hora y media</span>
-        solo se tiene en cuenta ganar o perder. Este periodo sirve para equilibrar
-        el torneo y que cada pareja acabe en la pista que le corresponde por nivel.
-      </p>
-
-      <p class="text-zinc-300 mb-8 leading-relaxed">
-        A partir del cuarto partido comienza la puntuación por pista:
-      </p>
-
-      <div class="grid md:grid-cols-2 gap-6 text-zinc-300">
-
-        <div class="p-5">
-          <p class="font-semibold text-white mb-2">Pista 1</p>
-          <p>4 puntos si ganas</p>
-          <p>2 puntos si pierdes</p>
-        </div>
-
-        <div class="p-5">
-          <p class="font-semibold text-white mb-2">Pista 2</p>
-          <p>3 puntos si ganas</p>
-          <p>1 punto si pierdes</p>
-        </div>
-
-        <div class="p-5">
-          <p class="font-semibold text-white mb-2">Pista 3</p>
-          <p>2 puntos si ganas</p>
-          <p>1 punto si pierdes</p>
-        </div>
-
-        <div class="p-5">
-          <p class="font-semibold text-white mb-2">Pista 4</p>
-          <p>1 punto si ganas</p>
-          <p>0 puntos si pierdes</p>
-        </div>
-
-      </div>
-
-      <p class="mt-8 text-zinc-300 leading-relaxed">
-        Así se premia no solo ganar, sino
-        <span class="text-white font-semibold">ganar en las pistas altas y mantenerse arriba</span>.
-      </p>
     </div>
 
     <div class="md:text-left mt-16">
       <h2 class="text-white text-xl font-bold ">🏆 Objetivo del torneo</h2>
       <p class="text-zinc-300 leading-relaxed pb-10">
         No gana quien más juegos anota, sino quien demuestra regularidad,
-        constancia y capacidad para mantenerse en las pistas superiores.
-        La clave está en subir… y no bajar.
+        constancia y capacidad para mantenerse superior contra cualquier otra pareja en las pistas.
       </p>
 
       <p class="text-white font-semibold">
-        ¡A disfrutar y a luchar por la Pista 1! 🎾
+        ¡A disfrutar y a luchar en la Pista! 🎾
       </p>
     </div>
   </section>
