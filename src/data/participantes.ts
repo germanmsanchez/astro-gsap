@@ -394,19 +394,19 @@ export const participantesByYear: Record<
     descripcion: "Muy activo en pista y con buena coordinación, siempre aporta intensidad al juego."
   },
   {
-    nombre: "Edu Lopez",
+    nombre: "Ivan Gumpert",
     grupo: 2,
-    apodo: "Edulop",
-    pareja: "Antonio",
+    apodo: "Gumpert",
+    pareja: "Martin",
     posicion: "drive",
-    edad: 24,
+    edad: 28,
     descripcion: "Jugador muy completo que combina potencia y colocación en sus golpes."
   },
   {
     nombre: "Antonio",
     grupo: 2,
     apodo: "Chupete",
-    pareja: "Edu",
+    pareja: "Alejandro",
     posicion: "revés",
     edad: 29,
     descripcion: "Jugador con experiencia que sabe manejar bien los tiempos del partido."
@@ -451,7 +451,7 @@ export const participantesByYear: Record<
     nombre: "Martin",
     grupo: 2,
     apodo: "Iron Fist",
-    pareja: "Alejandro",
+    pareja: "Ivan Gumpert",
     posicion: "revés",
     edad: 29,
     descripcion: "Jugador muy trabajador que pelea cada punto y mantiene una gran actitud competitiva."
@@ -460,7 +460,7 @@ export const participantesByYear: Record<
     nombre: "Alejandro",
     grupo: 2,
     apodo: "Saque Mate",
-    pareja: "Martin",
+    pareja: "Antonio",
     posicion: "drive",
     edad: 35,
     descripcion: "Jugador con buen control de bola que destaca por su regularidad durante los partidos."

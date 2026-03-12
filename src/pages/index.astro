@@ -1,181 +1,300 @@
 ---
 import "../styles/global.css";
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+const countBoxClass =
+  "relative flex h-[4.6rem] w-[3.3rem] items-center justify-center overflow-hidden rounded-md bg-zinc-100 text-black text-[2.4rem] leading-none font-medium shadow-[0_10px_30px_rgba(0,0,0,0.25)] after:content-[''] after:absolute after:left-0 after:right-0 after:top-1/2 after:h-px after:-translate-y-1/2 after:bg-black/20 md:h-[7rem] md:w-[5rem] md:text-[3.5rem]";
 ---
 
 <BaseLayout>
-  <section class="relative flex h-screen items-center justify-center overflow-hidden">
+  <section class="relative h-screen overflow-hidden">
     <img
       src="/src/public/fondo.png"
       alt="Pista de pádel"
       class="pointer-events-none absolute inset-0 h-full w-full object-cover"
     />
-    <div class="pointer-events-none absolute inset-0 bg-black/30"></div>
+    <div class="pointer-events-none absolute inset-0 bg-black/40"></div>
 
     <div
-      id="introAnim"
-      class="
-         absolute
-         -translate-x-1/2
-        top-1/2 -translate-y-1/2
-        flex items-center gap-20
-        left-0 md:-translate-x-1/3
-        md:gap-150
-      "
+      id="introScreen"
+      class="absolute inset-0 flex items-center justify-center"
     >
-      <span id="palaWrap" class="block">
-        <img
-          id="palaImg"
-          src="/src/public/pala-german3.png"
-          alt="Pala de padel"
-          class="
-            h-140 w-auto md:h-300 md:w-auto
-          "
-        />
-      </span>
-
-      <button id="participarBtn" type="button" class="shrink-0">
-        <span id="ballWrap" class="block">
+      <div
+        id="introAnim"
+        class="
+          absolute
+          -translate-x-1/2
+          top-1/2 -translate-y-1/2
+          flex items-center gap-20
+          left-0 md:-translate-x-1/3
+          md:gap-150
+        "
+      >
+        <span id="palaWrap" class="block">
           <img
-            src="/src/public/pelota-boton.png"
-            alt="Pelota de padel"
-            class="
-              pointer-events-none
-              h-16 w-16
-
-              md:h-30 md:w-30
-            "
+            id="palaImg"
+            src="/src/public/pala-german3.png"
+            alt="Pala de padel"
+            class="h-140 w-auto md:h-300 md:w-auto"
           />
         </span>
-      </button>
+
+        <button id="participarBtn" type="button" class="shrink-0">
+          <span id="ballWrap" class="block">
+            <img
+              src="/src/public/pelota-boton.png"
+              alt="Pelota de padel"
+              class="pointer-events-none h-16 w-16 md:h-30 md:w-30"
+            />
+          </span>
+        </button>
+      </div>
+    </div>
+
+    <div
+      id="countdownScreen"
+      class="hidden absolute inset-0 z-10 px-6"
+    >
+      <div class="flex min-h-screen flex-col items-center justify-center text-center text-white">
+        <h1 class="text-4xl md:text-7xl font-black uppercase tracking-tight">
+          Cumpleaños
+        </h1>
+        <h2 class="mt-2 text-4xl md:text-7xl font-black uppercase tracking-tight">
+          World Padel Tour
+        </h2>
+
+        <p class="mt-10 text-lg md:text-2xl text-white/90">
+          ¡Próximamente!
+        </p>
+
+        <div class="mt-8 flex flex-wrap items-start justify-center gap-2 lg:gap-4">
+          <div class="flex flex-col items-center">
+            <div class="flex gap-1">
+              <div class={countBoxClass}><span id="daysTens">0</span></div>
+              <div class={countBoxClass}><span id="daysUnits">0</span></div>
+            </div>
+            <p class="mt-2 text-base font-semibold uppercase lg:text-2xl">Días</p>
+          </div>
+
+          <div class="pt-3 text-3xl font-light lg:pt-4 md:text-6xl">:</div>
+
+          <div class="flex flex-col items-center">
+            <div class="flex gap-1">
+              <div class={countBoxClass}><span id="hoursTens">0</span></div>
+              <div class={countBoxClass}><span id="hoursUnits">0</span></div>
+            </div>
+            <p class="mt-2 text-base font-semibold uppercase lg:text-2xl">Horas</p>
+          </div>
+
+          <div class="pt-3 text-3xl font-light lg:pt-4 md:text-6xl">:</div>
+
+          <div class="flex flex-col items-center">
+            <div class="flex gap-1">
+              <div class={countBoxClass}><span id="minutesTens">0</span></div>
+              <div class={countBoxClass}><span id="minutesUnits">0</span></div>
+            </div>
+            <p class="mt-2 text-base font-semibold uppercase lg:text-2xl">Minutos</p>
+          </div>
+
+          <div class="hidden pt-3 text-3xl font-light lg:block lg:pt-4 md:text-6xl">:</div>
+
+          <div class="hidden flex-col items-center lg:flex">
+            <div class="flex gap-1">
+              <div class={countBoxClass}><span id="secondsTens">0</span></div>
+              <div class={countBoxClass}><span id="secondsUnits">0</span></div>
+            </div>
+            <p class="mt-2 text-base font-semibold uppercase lg:text-2xl">Segundos</p>
+          </div>
+        </div>
+
+        <a
+          href="/participantes/2025"
+          class="mt-12 inline-flex items-center rounded-xl border border-white/70 bg-white px-6 py-4 text-sm font-black uppercase tracking-wide text-zinc-900 transition hover:scale-[1.02] hover:bg-zinc-100 md:text-xl"
+        >
+          ¡Ver participantes del 2025!
+        </a>
+      </div>
     </div>
   </section>
 
   <script is:inline>
-  window.addEventListener("DOMContentLoaded", () => {
-    const container = document.getElementById("introAnim");
-    const btn = document.getElementById("participarBtn");
-    const palaWrap = document.getElementById("palaWrap");
-    const palaImg = document.getElementById("palaImg");
-    const ball = document.getElementById("ballWrap");
+    window.addEventListener("DOMContentLoaded", () => {
+      const container = document.getElementById("introAnim");
+      const introScreen = document.getElementById("introScreen");
+      const countdownScreen = document.getElementById("countdownScreen");
 
-    if (!container || !btn || !palaWrap || !palaImg || !ball || !window.gsap) return;
+      const btn = document.getElementById("participarBtn");
+      const palaWrap = document.getElementById("palaWrap");
+      const palaImg = document.getElementById("palaImg");
+      const ball = document.getElementById("ballWrap");
 
-    const LS_KEY = "introAnimDone";
+      const LS_KEY = "introAnimDone";
 
-    if (localStorage.getItem(LS_KEY) === "1") {
-      container.style.display = "none";
-      return;
-    }
+      function showCountdown() {
+        if (introScreen) introScreen.classList.add("hidden");
+        if (countdownScreen) countdownScreen.classList.remove("hidden");
+        startCountdown();
+      }
 
-    let running = false;
+      function setDigits(value, tensId, unitsId) {
+        const safeValue = String(value).padStart(2, "0");
+        const tens = document.getElementById(tensId);
+        const units = document.getElementById(unitsId);
 
-    const mm = window.gsap.matchMedia();
+        if (tens) tens.textContent = safeValue[0];
+        if (units) units.textContent = safeValue[1];
+      }
 
-    btn.addEventListener("click", () => {
-      if (running) return;
-      running = true;
-      btn.disabled = true;
+      function startCountdown() {
+        const targetDate = new Date("2026-03-22T10:00:00");
 
-      if (btn._tl && btn._tl.kill) btn._tl.kill();
+        function updateCountdown() {
+          const now = new Date();
+          const diff = targetDate.getTime() - now.getTime();
 
-      mm.add(
-        {
-          isDesktop: "(min-width: 768px)",
-          isMobile: "(max-width: 767px)",
-        },
-        (context) => {
-          const { isDesktop, isMobile } = context.conditions;
-
-          let palaX1 = 800;
-          let palaX2 = 900;
-          let palaRot1 = 20;
-          let palaRot2 = 35;
-
-          let ballScale1 = 6;
-          let ballScale2 = 200;
-          let ballBlur = 8;
-
-          if (isMobile) {
-
-            palaX1 = Math.min(300, window.innerWidth * 0.55);
-            palaX2 = Math.min(380, window.innerWidth * 0.50);
-            palaRot1 = 16;
-            palaRot2 = 28;
-
-            ballScale1 = 4.5;
-            ballScale2 = 90;
-            ballBlur = 6;
+          if (diff <= 0) {
+            setDigits(0, "daysTens", "daysUnits");
+            setDigits(0, "hoursTens", "hoursUnits");
+            setDigits(0, "minutesTens", "minutesUnits");
+            setDigits(0, "secondsTens", "secondsUnits");
+            return;
           }
 
-          const tl = window.gsap.timeline({
-            onComplete: () => {
-              running = false;
-              localStorage.setItem(LS_KEY, "1");
-              container.style.display = "none";
-            },
-          });
+          const totalSeconds = Math.floor(diff / 1000);
+          const days = Math.floor(totalSeconds / (60 * 60 * 24));
+          const hours = Math.floor((totalSeconds % (60 * 60 * 24)) / (60 * 60));
+          const minutes = Math.floor((totalSeconds % (60 * 60)) / 60);
+          const seconds = totalSeconds % 60;
 
-          btn._tl = tl;
+          const daysString = String(days).padStart(2, "0");
+          const daysTens = document.getElementById("daysTens");
+          const daysUnits = document.getElementById("daysUnits");
 
-          tl.to(palaWrap, {
-            duration: 0.7,
-            y: "70px",
-            x: palaX1,
-            rotation: palaRot1,
-            ease: "power2.in",
-          });
+          if (daysTens) daysTens.textContent = daysString.slice(-2)[0];
+          if (daysUnits) daysUnits.textContent = daysString.slice(-2)[1];
 
-          tl.call(() => {
-            palaImg.src = "/src/public/pala-german2.png";
-          });
+          setDigits(hours, "hoursTens", "hoursUnits");
+          setDigits(minutes, "minutesTens", "minutesUnits");
+          setDigits(seconds, "secondsTens", "secondsUnits");
+        }
 
-          tl.to(palaWrap, {
-            duration: 0.06,
-            x: palaX2,
-            rotation: palaRot2,
-            ease: "power1.in",
-          });
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+      }
 
-          tl.call(() => {
-            palaImg.src = "/src/public/pala-german1.png";
-          });
+      if (localStorage.getItem(LS_KEY) === "1") {
+        showCountdown();
+        return;
+      }
 
-          tl.to(
-            ball,
-            {
-              duration: 1.8,
-              scale: ballScale1,
-              rotation: 360,
-              ease: "power3.in",
-              transformOrigin: "center center",
-            },
-            "<"
-          )
-            .to(ball, {
-              duration: 1.2,
-              scale: ballScale2,
-              filter: `blur(${ballBlur}px)`,
-              opacity: 0,
-              ease: "power2.out",
-            })
-            .to(
-              palaWrap,
+      if (!container || !btn || !palaWrap || !palaImg || !ball || !window.gsap) return;
+
+      let running = false;
+      const mm = window.gsap.matchMedia();
+
+      btn.addEventListener("click", () => {
+        if (running) return;
+        running = true;
+        btn.disabled = true;
+
+        if (btn._tl && btn._tl.kill) btn._tl.kill();
+
+        mm.add(
+          {
+            isDesktop: "(min-width: 768px)",
+            isMobile: "(max-width: 767px)",
+          },
+          (context) => {
+            const { isMobile } = context.conditions;
+
+            let palaX1 = 800;
+            let palaX2 = 900;
+            let palaRot1 = 20;
+            let palaRot2 = 35;
+
+            let ballScale1 = 6;
+            let ballScale2 = 200;
+            let ballBlur = 8;
+
+            if (isMobile) {
+              palaX1 = Math.min(300, window.innerWidth * 0.55);
+              palaX2 = Math.min(380, window.innerWidth * 0.5);
+              palaRot1 = 16;
+              palaRot2 = 28;
+
+              ballScale1 = 4.5;
+              ballScale2 = 90;
+              ballBlur = 6;
+            }
+
+            const tl = window.gsap.timeline({
+              onComplete: () => {
+                running = false;
+                localStorage.setItem(LS_KEY, "1");
+                showCountdown();
+              },
+            });
+
+            btn._tl = tl;
+
+            tl.to(palaWrap, {
+              duration: 0.7,
+              y: "70px",
+              x: palaX1,
+              rotation: palaRot1,
+              ease: "power2.in",
+            });
+
+            tl.call(() => {
+              palaImg.src = "/src/public/pala-german2.png";
+            });
+
+            tl.to(palaWrap, {
+              duration: 0.06,
+              x: palaX2,
+              rotation: palaRot2,
+              ease: "power1.in",
+            });
+
+            tl.call(() => {
+              palaImg.src = "/src/public/pala-german1.png";
+            });
+
+            tl.to(
+              ball,
               {
-                duration: 0.01,
-                opacity: 0,
-                rotation: palaRot1,
-                ease: "power2.in",
+                duration: 1.8,
+                scale: ballScale1,
+                rotation: 360,
+                ease: "power3.in",
+                transformOrigin: "center center",
               },
               "<"
-            );
+            )
+              .to(ball, {
+                duration: 1.2,
+                scale: ballScale2,
+                filter: `blur(${ballBlur}px)`,
+                opacity: 0,
+                ease: "power2.out",
+              })
+              .to(
+                palaWrap,
+                {
+                  duration: 0.01,
+                  opacity: 0,
+                  rotation: palaRot1,
+                  ease: "power2.in",
+                },
+                "<"
+              );
 
-          return () => {
-            if (tl && tl.kill) tl.kill();
-          };
-        }
-      );
+            return () => {
+              if (tl && tl.kill) tl.kill();
+            };
+          }
+        );
+      });
     });
-  });
-</script>
+  </script>
 </BaseLayout>

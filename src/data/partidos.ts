@@ -400,8 +400,8 @@ export const partidosByYear: Record<string, Enfrentamiento[]> = {
     {
       grupo: 2,
       partido: 1,
-      pareja1: ["Edu Lopez", "Antonio"],
-      pareja2: ["Martin", "Alejandro"],
+      pareja1: ["Alejandro", "Antonio"],
+      pareja2: ["Martin", "Ivan Gumpert"],
     },
     {
       grupo: 2,
@@ -421,7 +421,7 @@ export const partidosByYear: Record<string, Enfrentamiento[]> = {
       grupo: 2,
       partido: 2,
       pareja1: ["Por definir", "Por definir"],
-      pareja2: ["Martin", "Alejandro"],
+      pareja2: ["Martin", "Ivan Gumpert"],
     },
     {
       grupo: 2,
@@ -432,7 +432,7 @@ export const partidosByYear: Record<string, Enfrentamiento[]> = {
     {
       grupo: 2,
       partido: 2,
-      pareja1: ["Edu Lopez", "Antonio"],
+      pareja1: ["Alejandro", "Antonio"],
       pareja2: ["Marina", "Jessica"],
     },
 
@@ -441,7 +441,7 @@ export const partidosByYear: Record<string, Enfrentamiento[]> = {
       grupo: 2,
       partido: 3,
       pareja1: ["Raquel Ballester", "Ivana"],
-      pareja2: ["Martin", "Alejandro"],
+      pareja2: ["Martin", "Ivan Gumpert"],
     },
     {
       grupo: 2,
@@ -459,7 +459,7 @@ export const partidosByYear: Record<string, Enfrentamiento[]> = {
       grupo: 2,
       partido: 3,
       pareja1: ["Alonso", "Aran Riera"],
-      pareja2: ["Edu Lopez", "Antonio"],
+      pareja2: ["Alejandro", "Antonio"],
     },
 
     // GRUPO 2 - PARTIDO 4
@@ -472,14 +472,14 @@ export const partidosByYear: Record<string, Enfrentamiento[]> = {
     {
       grupo: 2,
       partido: 4,
-      pareja1: ["Martin", "Alejandro"],
+      pareja1: ["Martin", "Ivan Gumpert"],
       pareja2: ["Marina", "Jessica"],
     },
     {
       grupo: 2,
       partido: 4,
       pareja1: ["Xavi", "David Cabrera"],
-      pareja2: ["Edu Lopez", "Antonio"],
+      pareja2: ["Alejandro", "Antonio"],
     },
     {
       grupo: 2,
@@ -499,12 +499,12 @@ export const partidosByYear: Record<string, Enfrentamiento[]> = {
       grupo: 2,
       partido: 5,
       pareja1: ["María", "Loreto"],
-      pareja2: ["Edu Lopez", "Antonio"],
+      pareja2: ["Alejandro", "Antonio"],
     },
     {
       grupo: 2,
       partido: 5,
-      pareja1: ["Martin", "Alejandro"],
+      pareja1: ["Martin", "Ivan Gumpert"],
       pareja2: ["Alonso", "Aran Riera"],
     },
     {
@@ -519,7 +519,7 @@ export const partidosByYear: Record<string, Enfrentamiento[]> = {
       grupo: 2,
       partido: 6,
       pareja1: ["Raquel Ballester", "Ivana"],
-      pareja2: ["Edu Lopez", "Antonio"],
+      pareja2: ["Alejandro", "Antonio"],
     },
     {
       grupo: 2,
@@ -536,7 +536,7 @@ export const partidosByYear: Record<string, Enfrentamiento[]> = {
     {
       grupo: 2,
       partido: 6,
-      pareja1: ["Martin", "Alejandro"],
+      pareja1: ["Martin", "Ivan Gumpert"],
       pareja2: ["Xavi", "David Cabrera"],
     },
 
@@ -550,7 +550,7 @@ export const partidosByYear: Record<string, Enfrentamiento[]> = {
     {
       grupo: 2,
       partido: 7,
-      pareja1: ["Edu Lopez", "Antonio"],
+      pareja1: ["Alejandro", "Antonio"],
       pareja2: ["Por definir", "Por definir"],
     },
     {
@@ -563,7 +563,7 @@ export const partidosByYear: Record<string, Enfrentamiento[]> = {
       grupo: 2,
       partido: 7,
       pareja1: ["María", "Loreto"],
-      pareja2: ["Martin", "Alejandro"],
+      pareja2: ["Martin", "Ivan Gumpert"],
     },
   ],
 };
