@@ -29,21 +29,21 @@ const currentPath = Astro.url.pathname;
 
     <nav class="hidden md:flex items-center gap-12 text-sm font-semibold uppercase tracking-wider">
       <a 
-        href="/clasificacion" 
+        href="/clasificacion/2026" 
         class={`transition hover:text-lime-400 ${currentPath === "/clasificacion" ? "text-lime-400" : ""}`}
       >
         Clasificación
       </a>
 
       <a 
-        href="/participantes" 
+        href="/participantes/2026" 
         class={`transition hover:text-lime-400 ${currentPath === "/participantes" ? "text-lime-400" : ""}`}
       >
         Participantes
       </a>
 
       <a 
-        href="/partidos" 
+        href="/partidos/2026" 
         class={`transition hover:text-lime-400 ${currentPath === "/partidos" ? "text-lime-400" : ""}`}
       >
         Partidos
@@ -56,21 +56,21 @@ const currentPath = Astro.url.pathname;
     class="md:hidden hidden flex-col bg-zinc-900 border-t border-zinc-800 px-6 py-6 space-y-6 text-sm font-semibold uppercase tracking-wider"
   >
     <a 
-      href="/clasificacion" 
+      href="/clasificacion/2026" 
       class={`block transition hover:text-lime-400 ${currentPath === "/clasificacion" ? "text-lime-400" : ""}`}
     >
       Clasificación
     </a>
 
     <a 
-      href="/participantes" 
+      href="/participantes/2026" 
       class={`block transition hover:text-lime-400 ${currentPath === "/participantes" ? "text-lime-400" : ""}`}
     >
       Participantes
     </a>
 
     <a 
-      href="/partidos" 
+      href="/partidos/2026" 
       class={`block transition hover:text-lime-400 ${currentPath === "/partidos" ? "text-lime-400" : ""}`}
     >
       Partidos
