@@ -25,7 +25,15 @@ function partidoLabel(p?: number) {
   return `Partido ${p}`;
 }
 
-const sorted = [...matches].sort((a, b) => {
+function isDefinedPair(pair?: string[]) {
+  return !!pair && pair.length === 2 && pair.every((name) => name.trim() !== "Por definir");
+}
+
+const visibleMatches = matches.filter(
+  (m) => isDefinedPair(m.pareja1) && isDefinedPair(m.pareja2)
+);
+
+const sorted = [...visibleMatches].sort((a, b) => {
   const ga = a.grupo ?? 99;
   const gb = b.grupo ?? 99;
   if (ga !== gb) return ga - gb;

@@ -394,12 +394,12 @@ export const participantesByYear: Record<
     descripcion: "Muy activo en pista y con buena coordinación, siempre aporta intensidad al juego."
   },
   {
-    nombre: "Ivan Gumpert",
+    nombre: "Alex Montoro",
     grupo: 2,
-    apodo: "Gumpert",
+    apodo: "Montoro",
     pareja: "Martin",
     posicion: "drive",
-    edad: 28,
+    edad: 30,
     descripcion: "Jugador muy completo que combina potencia y colocación en sus golpes."
   },
   {
@@ -410,24 +410,6 @@ export const participantesByYear: Record<
     posicion: "revés",
     edad: 29,
     descripcion: "Jugador con experiencia que sabe manejar bien los tiempos del partido."
-  },
-  {
-    nombre: "Marina",
-    grupo: 2,
-    apodo: "La fisio",
-    pareja: "Jessica",
-    posicion: "drive",
-    edad: 24,
-    descripcion: "Jugadora muy regular que aporta estabilidad al juego de pareja."
-  },
-  {
-    nombre: "Jessica",
-    grupo: 2,
-    apodo: "La bellea",
-    pareja: "Marina",
-    posicion: "revés",
-    edad: 23,
-    descripcion: "Jugadora con mucha actitud en pista que siempre busca competir al máximo."
   },
   {
     nombre: "María",
@@ -483,23 +465,5 @@ export const participantesByYear: Record<
     edad: 30,
     descripcion: "Jugador muy sólido que aporta seguridad y buen juego en equipo."
   },
-  {
-    nombre: "",
-    grupo: 2,
-    apodo: "",
-    pareja: "",
-    posicion: "revés",
-    edad: 0,
-    descripcion: "Jugador creativo que intenta sorprender con golpes bien colocados."
-  },
-  {
-    nombre: "",
-    grupo: 2,
-    apodo: "",
-    pareja: "",
-    posicion: "drive",
-    edad: 0,
-    descripcion: "Jugador muy sólido que aporta seguridad y buen juego en equipo."
-  }
 ],
 };
